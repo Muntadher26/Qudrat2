@@ -712,3 +712,43 @@ document.addEventListener('DOMContentLoaded', function() {
         yearElement.innerHTML = yearElement.innerHTML.replace('2024', getCurrentYear());
     }
 });
+// ====== Mobile Nav (Fix) ======
+function setupMobileNav() {
+  const toggle = document.getElementById('mobileNavToggle');
+  const menu = document.getElementById('mobileNav');
+  const closeBtn = document.getElementById('closeMenu');
+  if (!toggle || !menu) return;
+
+  // Backdrop
+  let backdrop = document.querySelector('.mobile-nav-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.className = 'mobile-nav-backdrop';
+    document.body.appendChild(backdrop);
+  }
+
+  const openMenu = () => {
+    menu.classList.add('open');
+    backdrop.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMenu = () => {
+    menu.classList.remove('open');
+    backdrop.classList.remove('show');
+    document.body.style.overflow = '';
+  };
+
+  toggle.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+}
+
+// شغّلها بعد DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  setupMobileNav();
+});
