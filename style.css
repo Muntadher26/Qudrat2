@@ -1214,6 +1214,114 @@ body {
         width: 100% !important;
     }
 }
+
+/* ====== Mobile Nav (Fix) ====== */
+.mobile-nav-toggle,
+.mobile-nav {
+  display: none;
+}
+
+/* قائمة الجوال */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(320px, 85vw);
+  height: 100vh;
+  background: #fff;
+  box-shadow: 0 10px 40px rgba(0,0,0,.2);
+  z-index: 3000;
+  padding: 16px;
+  overflow-y: auto;
+  transform: translateX(110%);
+  transition: transform .25s ease;
+}
+
+/* عند الفتح */
+.mobile-nav.open {
+  transform: translateX(0);
+}
+
+/* خلفية شفافة عند فتح القائمة */
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 2500;
+  display: none;
+}
+
+.mobile-nav-backdrop.show {
+  display: block;
+}
+
+/* زر الهامبرغر */
+.mobile-nav-toggle {
+  position: absolute;
+  left: 16px; /* لأن RTL */
+  top: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ترتيب الهيدر على الجوال */
+@media (max-width: 768px) {
+  /* أخفي روابط الهيدر الأساسية حتى ما تتكرر */
+  .nav-links,
+  .auth-buttons {
+    display: none !important;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+}
+
+/* تنسيق محتوى القائمة */
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 12px;
+}
+
+.close-menu {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+.mobile-nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 10px;
+  border-radius: 12px;
+  color: #1f2937;
+  text-decoration: none;
+}
+
+.mobile-nav-links a.active {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+
 /* تأكد أن المحتوى الرئيسي يتناسب مع الهيدر المصغر */
 .header.scrolled + .main-content {
     margin-top: 80px !important;
